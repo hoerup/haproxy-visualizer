@@ -1,0 +1,11 @@
+{
+    "name": "haproxy-visualizer",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap": "^4.6.0",
+        "cytoscape": "^3.18.1",
+        "cytoscape-klay": "^3.1.4",
+        "jquery": "^3.6.0",
+        "popper.js": "^1.16.1"
+    }
+}

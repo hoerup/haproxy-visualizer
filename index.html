@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>HAproxy config visualizer</title>
+
+    <script src="bundle.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+        #cy {
+            width: 60%;
+            height: 98%;
+            display: block;
+            float: left;
+        }
+        #config {
+            width: 30%;
+            height: 60%;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="cy"></div>
+    <div>
+        Paste haproxy config here:<br>
+        <textarea id="config" ></textarea><br>
+        <button id="parsebtn"  class="btn  btn-primary" >parse</button>
+        <button id="resetbtn"  class="btn  btn-primary" >reset view</button>
+    </div>
+
+
+</body>
+
+</html>

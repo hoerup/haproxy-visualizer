@@ -14,6 +14,12 @@ $(function () {
     $("#resetbtn").on('click', function () {
         resetView();
     });
+
+    $("#search").on('change', function() {
+        search();
+    });
+
+
 });
 
 function initCytoscape() {
@@ -70,6 +76,13 @@ function initCytoscape() {
                 }
             },
             {
+                selector: '.backend.search',
+                style: {
+                    'background-color': '#000',
+                    
+                }
+            },
+            {
                 selector: '.hidden',
                 css: {
                     'display': 'none'
@@ -108,6 +121,8 @@ function initCytoscape() {
 
     cy.on('select', 'node', function (evt) {
 
+        stopBlink();
+
         var tgt = evt.target[0];
 
         var allEdges = cy.$("edge");
@@ -129,6 +144,10 @@ function initCytoscape() {
 }
 
 function parseText() {
+
+    stopBlink();
+
+    $("#search").val("");
     cy.remove('node');
     cy.remove('edge');
 
@@ -226,6 +245,9 @@ function parseText() {
 }
 
 function resetView() {
+    $("#search").val("");
+
+    stopBlink();
     
     var allEdges = cy.$("edge");
     allEdges.removeClass('hidden');
@@ -235,6 +257,62 @@ function resetView() {
     allNodes.unselect();
 
     cy.fit();
+}
+
+function search() {
+    var search = $("#search").val().trim();;
+    
+
+    var allEdges = cy.$("edge");
+    var allNodes = cy.$("node");
+
+    if (search == "") {
+        stopBlink();
+        return;
+    }
+
+
+    allEdges.forEach(function (edge) {
+    });
+    
+
+    allNodes.forEach(function (node) {
+
+        var id = node.id();        
+
+        if (id.indexOf(search) >=  0) {
+            blink(node);
+        } else {            
+            node.stop();
+            node.clearQueue();
+            node.style({ opacity: 1});
+        }
+    });
+
+}
+
+function stopBlink() {
+    var allNodes = cy.$("node");
+
+    allNodes.stop();
+    allNodes.clearQueue();
+    allNodes.style({ opacity: 1});
+}
+
+function blink(elem) {    
+    for (var i=0; i<50; i++) {
+        elem.animate({            
+            style: { opacity: 0},
+            duration: 500,
+            easing: 'ease-in-sine'
+        }).delay(0).animate({
+            style: { opacity: 1},
+            duration: 500,
+            easing: 'ease-in-sine'
+        });
+    }
+
+
 }
 },{"cytoscape":3,"cytoscape-klay":2,"jquery":6}],2:[function(require,module,exports){
 (function webpackUniversalModuleDefinition(root, factory) {

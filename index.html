@@ -18,6 +18,7 @@
             height: 60%;
             display: block;
         }
+
     </style>
 
 </head>
@@ -27,13 +28,23 @@
         <b><a href='https://github.com/hoerup/haproxy-visualizer/blob/main/README.md'>haproxy-visualizer</a></b>        
     </div>
 
-    <div id="cy"></div>
     <div>
-        Paste haproxy config here:<br>
-        <textarea id="config" ></textarea><br>
-        <button id="parsebtn"  class="btn  btn-primary" >parse</button>
-        <button id="resetbtn"  class="btn  btn-primary" >reset view</button>
+        <div id="cy"></div>
+        <div>
+            Paste haproxy config here:<br>
+            <textarea  id="config"></textarea><br>
+
+                <button id="parsebtn"  class="btn  btn-primary" >parse</button>
+                <button id="resetbtn"  class="btn  btn-primary" >reset view</button>
+
+                <br><br>
+
+                <input type="text"  placeholder="search" id="search">
+
+
+        </div>
     </div>
+
 
 
 </body>

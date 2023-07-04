@@ -55,6 +55,12 @@ function initCytoscape() {
                 }
             },
             {
+                selector: '.unconnected',
+                style: {
+                    'opacity': '0.6',
+                }
+            },            
+            {
                 selector: '.frontend:selected',
                 style: {
                     'background-color': '#F00',
@@ -67,7 +73,7 @@ function initCytoscape() {
                     'background-color': '#008',
                     'label': 'data(id)',
                 }
-            },
+            },  
             {
                 selector: '.backend:selected',
                 style: {
@@ -229,6 +235,17 @@ function parseText() {
         cy.add(
             { group: 'edges', data: { /*id: 'e1',*/ source: edge.source, target: edge.target, acl: edge.acl} }
         );
+    });
+
+    cy.nodes().forEach( function(node) {
+        var edges = node.connectedEdges();
+        var count = edges.size();
+        if (count == 0) {
+            node.addClass('unconnected');
+            console.log("" + node.id() + " " + count);
+        }
+
+        
     });
 
     var layout = cy.makeLayout({
